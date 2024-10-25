@@ -1,0 +1,588 @@
+Web Lab MCA | vadithya16
+WEB LAB Programs
+1. Write a HTML Page to create a Student registration form that collects various student 
+information such as first name, last name, Roll No., email id, mobile number, etc and a two 
+buttons: submit and reset. Apply different CSS properties
+<html>
+<head>
+<title>Student Registration Form</title>
+<style>
+.form-container
+{
+max-width:600px;
+margin:20px auto;
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 5px;
+}
+h2.form-heading 
+{
+text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="form-container">
+<h2 class="form-heading">Student Registration Form</h2>
+<form action="" id="studentForm">
+<table style="width:100%">
+<tr>
+<td><label>First Name</label></td>
+<td><input type="text" name="firstName" required></td>
+</tr>
+<tr>
+<td><label>Last Name:</label></td>
+<td><input type="text" name="lastName" required></td>
+</tr>
+<tr>
+<td><label>Roll No:</label></td>
+<td><input type="text" name="rollNo" required></td>
+</tr>
+<tr>
+<td><label>E-mail Id:</label></td>
+<td><input type="email" name="email" required></td>
+</tr>
+<tr>
+<td><label>Mobile Number:</label></td>
+<td><input type="tel" name="mobile" required></td>
+</tr>
+<tr>
+<td><label>Gender:</label></td>
+Web Lab MCA | vadithya16
+<td>
+<select name="gender" required>
+<option>Select</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+</td>
+</tr>
+<tr>
+<td><label>Date of Birth:</label></td>
+<td><input type="date" name="dob" required></td>
+</tr>
+<tr>
+<td><label>Address:</label></td>
+<td><textarea name="address" rows="4"></textarea></td>
+</tr> 
+</table>
+<div align="center">
+<input type="submit" value="submit">
+<input type="reset" value="Reset">
+</div>
+</form>
+</div>
+</body>
+</html>
+2. a. Develop and demonstrate a XHTML file that includes JavaScript script for the following 
+problems:
+i) Accept a number n obtained using prompt and display the first n Fibonacci numbers using alert
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fibonacci Series</title>
+</head>
+<body>
+<h1>Fibonacci Series</h1>
+<script>
+var n,a,b,c,i;
+n=prompt("Enter the range",0);
+a=0;
+b=1;
+for(i=1;i<=n;i++)
+{
+document.write(a+ "<br>");
+c=a+b;
+a=b;
+b=c;
+}
+</script>
+Web Lab MCA | vadithya16
+</body>
+</html>
+ii) Accept a number n obtained using prompt, and display a table of numbers from 1 to n and 
+their squares using alert()
+<html>
+<head>
+<title>Square Series</title>
+</head>
+<body>
+<h1><center><b>To Generate TABLE of 1 to N number And Their Squres</b></center></h1>
+<script>
+var i,j,k,n,pro,str;
+n=prompt("Enter the Range",0);
+for(k=1;k<=n;k++)
+{
+str="";
+for(i=1;i<=10;i++)
+{
+pro=k*i;
+j=Math.pow(pro,2)
+str+= k+"*"+i+"="+pro+"---"+j+"\n";
+}
+alert(str);
+}
+</script>
+</body>
+</html>
+b. Develop and demonstrate using JavaScript, a XHTML document that displays random numbers 
+(integers).
+<html>
+<head>
+<title>Random Number Generation</title>
+</head>
+<body>
+<h2>The Random Number Generated is:</h2>
+<script>
+document.write(Math.floor((Math.random()*10)+1));
+</script>
+</body>
+</html>
+Web Lab MCA | vadithya16
+3. Write a JavaScript program to generate n number of random numbers and store them in an 
+array. Sort the generated numbers in ascending order using array sort method. Develop 
+separate functions to find mean and median of numbers that are in the array. Display the 
+results with appropriate messages.
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Random Numbers Analysis</title>
+ <script>
+ function generateRandomNumbers(n) 
+{
+ var randomNumbers = [];
+ for (var i = 0; i < n; i++) 
+{
+ randomNumbers.push(Math.random());
+ }
+ return randomNumbers;
+ }
+ 
+ function calculateMean(numbers) 
+{
+ if (numbers.length == 0) return 0;
+ 
+ var sum = 0;
+ for (var i = 0; i < numbers.length; i++) 
+{
+ sum += numbers[i];
+ }
+ return sum / numbers.length;
+ }
+ 
+ function calculateMedian(numbers) 
+{
+ if (numbers.length == 0) return 0;
+ 
+ numbers.sort(function(a, b) 
+{
+ return a - b;
+ });
+ 
+ var middle = Math.floor(numbers.length / 2);
+ if (numbers.length % 2 === 0) 
+{
+ return (numbers[middle - 1] + numbers[middle]) / 2;
+ } 
+else 
+{
+ return numbers[middle];
+ }
+ }
+Web Lab MCA | vadithya16
+ 
+ function analyzeRandomNumbers() 
+{
+ var n = prompt("Enter the number of random numbers to generate: ");
+ n = parseInt(n); 
+ 
+ if (isNaN(n) || n <= 0) 
+{
+ alert("Please enter a valid positive number");
+ return;
+ }
+ 
+ var randomNumbers = generateRandomNumbers(n);
+ var mean = calculateMean(randomNumbers);
+ var median = calculateMedian(randomNumbers);
+ 
+ document.write('<h2>Random Numbers Analysis</h2>');
+ document.write('<p>Generated ' + n + ' random numbers: ' + randomNumbers.join(', ') + '</p>');
+ document.write('<p>Mean (average) of the numbers: ' + mean + '</p>');
+ document.write('<p>Median of the numbers: ' + median + '</p>');
+ }
+ </script>
+</head>
+<body>
+ <button onclick="analyzeRandomNumbers()">Analyze Random Numbers</button>
+</body>
+</html>
+4. a. Develop and demonstrate, using JavaScript script, a XHTML document that collects the 
+USN (the valid format is: A digit from 1 to 4 followed by two uppercase characters followed by 
+two digits followed by two uppercase characters followed by three digits; No embedded spaces 
+allowed) of the user. Event handler must be included for the Form element that collects this 
+information to validate the input. Messages in the alert windows must be produced when 
+errors are detected.
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD xHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>USN Validation</title>
+<script type="text/javascript">
+function checkusn()
+{
+ var str=document.getElementById('usn').value;
+ var usno=/^[1-4]{1}[A-Z]{2}\d{2}[A-Z]{2}\d{3}$/;
+ var rest=str.match(usno);
+ if(rest==null)
+ alert("Invalid USN\n");
+ else
+ alert("Valid USN");
+Web Lab MCA | vadithya16
+}
+</script>
+</head>
+<body>
+ <h2 align='center' style='color:red'>Validate USN</h2>
+ <hr /> <br /> <br />
+ <form id="myform">
+ <label><h2>Enter USN:</h2>
+ <input type="text" id="usn" size="20" /> </label>
+ <input type="button" onclick="checkusn()" value="Validate" />
+ </form>
+</body>
+</html>
+b. Modify the above program to get the current semester also (restricted to be a number from 1 to 6).
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>Usn Validation</title>
+ <script>
+ function checkusn() 
+{
+ var str = document.getElementById('usn').value;
+ var usno = /^[1-4]{1}[A-Z]{2}\d{2}[A-Z]{2}\d{3}$/;
+ var rest = str.match(usno);
+ if (rest == null) 
+{
+ alert("Not Valid USN\n");
+ } 
+else 
+{
+ alert("Valid USN ");
+ }
+ validsem();
+ }
+ function validsem() 
+{
+ var sem = document.getElementById('sem').value;
+ var s1 = /^[1-6]$/;
+ var res = sem.match(s1);
+ if (res == null) 
+{
+ alert("Not Valid semester");
+ } 
+else 
+{
+Web Lab MCA | vadithya16
+ alert("Valid Semester");
+ }
+ }
+ </script>
+</head>
+<body>
+ <h2 align='center' style='color:red'>Validate USN and Semester</h2>
+ <hr /><br /><br />
+ <form id="myform">
+ <label><b>USN Number:</b>
+ <input type="text" id="usn" size="12" /> </label>
+ <label><b>Semester:</b>
+ <input type="text" id="sem" size="5" /> </label>
+ <input type="button" value="Validate" onclick="checkusn()" />
+ </form>
+</body>
+</html>
+5. Develop using JavaScript script, an XHTML document that use of onload and onfocus events.
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD xHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="www.w3.org/tr/xhtml/1999/xhtml11.dtd">
+<head>
+ <title>onload and onfocus Events</title>
+</head>
+<body onload="alert('WELCOME TO OUR HOME PAGE')">
+ <form>
+ <label><h2>Enter Your Name :</h2>
+ <input type="text" onfocus="alert('Enter Your Name')" />
+ </label>
+ </form>
+</body>
+</html>
+6. Design an XML document to store information about a student in an engineering college 
+affiliated to VTU. The information must include USN, Name, Name of the College, Brach, Year 
+of Joining, and e-mail id. Make up sample data for 3 students. Create a CSS style sheet and use 
+it to display the document.
+Xml file:
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/css" href="lab6a.css" ?>
+<vtu>
+<student>
+Web Lab MCA | vadithya16
+<usn>1NT23MC105</usn>
+<name>V Adithya</name>
+<branch>MCA</branch>
+<college>Nitte Meenakshi</college>
+<yearofjoin>2023</yearofjoin>
+<email>adithya@gmail.com</email>
+</student>
+<student>
+<usn>1NT23MC096</usn>
+<name>Sudeep</name>
+<branch>MCA</branch>
+<college>Nitte Meenakshi</college>
+<yearofjoin>2023</yearofjoin>
+<email>sudeep@gmail.com</email>
+</student>
+<student>
+<usn>1NT23MC061</usn>
+<name>Prathik</name>
+<branch>MCA</branch>
+<college>Nitte Meenakshi</college>
+<yearofjoin>2023</yearofjoin>
+<email>prathika@gmail.com</email>
+</student>
+</vtu>
+CSS file:
+student{
+display:block;
+width:450px;
+margin:10px;
+border:5px double orange;
+}
+name {
+display:block;
+font: bold 18pt Verdana;
+color:blue;
+}
+usn {
+display:block;
+}
+branch, college, yearofjoin {
+display:block;
+color:green;
+}
+email {
+display:block;
+color:green;
+}
+Web Lab MCA | vadithya16
+7. Create XHTML forms with Name, address line1, address line2 and email text fields. On 
+submitting, store the values in MySQL table. Retrieve and display the data based on name.
+Html file:
+<html>
+<head>
+ <title>Personal Info</title>
+</head>
+<body bgcolor="lightpink">
+ <form method="post" action="http://localhost/weblabmca/phpfile.php">
+ <table border="10" bgcolor="lightgreen" align="center">
+ <caption><h1>Input Personal Data</h1></caption>
+ <tr>
+ <td>Name</td>
+ <td><input type="text" name="txtname"/></td>
+ </tr>
+ <tr>
+ <td>Address1</td>
+ <td><input type="text" name="txtaddr1"/></td>
+ </tr>
+ <tr>
+ <td>Address2</td>
+ <td><input type="text" name="txtaddr2"/></td>
+ </tr>
+ <tr>
+ <td>Email</td>
+ <td><input type="text" name="txtemail"/></td>
+ </tr>
+ <tr>
+ <td colspan="2" align="center">
+ <input type="submit" value="Submit" name="submit1"/>
+ <input type="reset"/>
+ </td>
+ </tr>
+ </table>
+ <h1 align="center">Search</h1>
+ <table border="2" bgcolor="lightblue" align="center">
+ <tr>
+ <td>Enter name to search</td>
+ <td><input type="text" name="searchname"/></td>
+ </tr>
+ <tr>
+ <td colspan="2" align="center">
+ <input type="submit" value="Search" name="submit2"/>
+ <input type="reset"/>
+ </td>
+ </tr>
+ </table>
+</form>
+Web Lab MCA | vadithya16
+</body>
+</html>
+Php file:
+<?php
+$con=mysqli_connect("localhost","root","");
+mysqli_select_db($con,"labs");
+if(isset($_POST['submit1']))
+{
+ $name=$_POST['txtname'];
+ $addr=$_POST['txtaddr1'];
+ $city=$_POST['txtaddr2'];
+ $email=$_POST['txtemail'];
+ $query="insert into person values ('$name','$addr','$city','$email')";
+ if(mysqli_query($con,$query))
+ echo "<h1 align='center'>Inserted Successfully</h1>";
+ else
+ echo "<h1 align='center'>Insertion Failed</h1>";
+}
+else if(isset($_POST['submit2']))
+{
+ $sname=$_POST['searchname'];
+ $query="select * from person where name='$sname'";
+ $rslt=mysqli_query($con,$query);
+ $num_rows=mysqli_num_rows($rslt);
+ if(!$num_rows)
+ {
+ echo "<h1 align=center>No data found for the given search</h1>";
+ }
+ while($row=mysqli_fetch_row($rslt))
+ {
+ echo "<h4>Searched Info:</h4> <pre>
+ Name : $row[0] <br>
+ Address1 : $row[1] <br>
+ Address2 : $row[2] <br>
+ Email : $row[3] <br> </pre>";
+ }
+}
+?>
+8. Implement the following web applications using Javascript: A simple calculator web 
+application that takes two numbers and an operator (+, -, /, * and %) from an HTML page and 
+returns the result page with the operation performed on the operands
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+Web Lab MCA | vadithya16
+<script type="text/javascript">
+function AcceptNumbers()
+{
+var c=document.getElementById('choice');
+if((c.value>5)||(c.value<=0))
+alert("Invalid Choice");
+else
+{
+var a=prompt("Enter Number1","");
+var b=prompt("Enter Nubeer2","");
+a=parseInt(a);
+b=parseInt(b);
+switch(c.value)
+{
+case "1": alert("Sum of Two Number is: "+(a+b));
+break;
+case "2": alert("Differnce of Two Number is: "+(a-b));
+break;
+case "3": alert("Product of Two Number is: "+(a*b));
+break;
+case "4": alert("Division of Two Number is: "+(a/b));
+break;
+case "5": alert("Remainder of Two Number is: "+(a%b));
+break;
+}
+}
+}
+</script>
+</head>
+<body>
+<ol>
+<li>Addition (+)</li>
+<li>Subtraction (-)</li>
+<li>Multiplication (*)</li>
+<li>Division (/)</li>
+<li>Modulus (%)</li>
+</ol>
+<p>Enter Your Choice</p>
+<form name="choiceForm">
+<input type="text" id="choice">
+<input type="submit" onclick="AcceptNumbers()">
+</form>
+</body>
+</html>
+10. Implement the following web applications using PHP: A user validation web application, where 
+the user submits the login name and password to the server. The name and password are checked 
+against the data already available in Database and if the data matches, a successful login page is 
+returned. Otherwise a failure message is shown to the user.
+Web Lab MCA | vadithya16
+Php file:
+<?php
+$con=mysqli_connect("localhost","root","","labs");
+if(isset($_POST['submit']))
+{
+$name = $_POST['email'];
+$password = $_POST['password'];
+$query = "SELECT * FROM accounts WHERE username = '$name' AND password = 
+'$password'";
+$result = mysqli_query($con, $query);
+if(mysqli_num_rows($result) > 0) 
+{
+header("Location: dashboard.html");
+exit();
+}
+else
+{
+echo "<script>alert('Username or Password Does not Exist');</script>";
+}
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>LOGIN PAGE</title>
+<style type="text/css">
+.form-container
+{
+max-width:600px;
+margin:20px auto;
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 5px;
+}
+</style>
+</head>
+<body>
+<div class="form-container" align="center">
+<h2>LOGIN</h2>
+<form action="" method="post">
+<label>Username: <input type="email" name="email"></label><br><br>
+<label>Password: <input type="password" name="password"></label><br><br>
+<input type="submit" name="submit">
+<input type="reset">
+</form>
+</div>
+</body>
+Web Lab MCA | vadithya16
+</html>
+Html file:
+<!DOCTYPE html>
+<html>
+<head>
+<title>LOGIN Success Page</title>
+<style type="text/css">
+h1{
+text-align: center;
+color: red;
+}
+</style>
+</head>
+<body>
+<h1>Login Successful</h1>
+</body>
+</html>
